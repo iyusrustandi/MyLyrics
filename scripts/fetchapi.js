@@ -32,7 +32,7 @@ function updateSongList() {
 
     const songLink = $('<a>')
       .attr({
-        href: `lyrics-layout-mobile.html?artist=${encodeURIComponent(item.artist)}&song=${encodeURIComponent(item.song)}&lyrics=${encodeURIComponent((item.lyrics || '').trim())}`,
+        href: `lyrics-layout.html?artist=${encodeURIComponent(item.artist)}&song=${encodeURIComponent(item.song)}&lyrics=${encodeURIComponent((item.lyrics || '').trim())}`,
         target: '_blank',
         rel: 'noopener noreferrer',
       })
