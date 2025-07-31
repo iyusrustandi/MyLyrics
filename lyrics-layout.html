@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Lyrics Viewer</title>
+    <link href="/images/logo.png" rel="icon" />
+    <!-- <link rel="stylesheet" href="/style/lyrics-style.css" /> -->
+    <script src="scripts/jquery-3.7.0.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles/lyrics-style.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <style>
+      .loading-animation {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .loading-animation img {
+        width: 50px;
+        animation: spin 1s linear infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Main Content -->
+    <main role="main">
+      <!-- Lyrics Container -->
+      <section class="lyric-container">
+        <h2 id="lyric-title" aria-level="1">Loading...</h2>
+        <div id="lyric-content" aria-live="polite">
+          <p>Loading lyrics...</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="https://jaktourband.vercel.app/js/script.js"></script>
+    <script>
+      function loadLyrics(lyricsPath) {
+        const lyricContent = document.getElementById('lyric-content');
+
+        // Menampilkan animasi loading
+        lyricContent.innerHTML = `
+      <div class="loading-animation">
+        <p>Loading lyrics...</p>
+      </div>
+    `;
+
+        fetch(lyricsPath)
+          .then((response) => {
+            if (!response.ok) throw new Error('Lyrics file not found');
+            return response.text();
+          })
+          .then((html) => {
+            lyricContent.innerHTML = `<div class="lyrics-text">${html}</div>`;
+          })
+          .catch((error) => {
+            console.error(error);
+            lyricContent.innerHTML = '<p style="color: red;">Error: Unable to load lyrics.</p>';
+          });
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const artist = urlParams.get('artist');
+        const song = urlParams.get('song');
+        const lyricsFile = urlParams.get('lyrics')?.trim();
+
+        document.getElementById('page-title').textContent = artist && song ? `${artist} - ${song}` : 'Lyrics Viewer';
+        document.getElementById('lyric-title').textContent = artist && song ? `${artist} - ${song}` : 'Lyrics Viewer';
+
+        if (lyricsFile) {
+          loadLyrics(lyricsFile);
+        } else {
+          console.error('Lyrics file URL is missing.');
+          document.getElementById('lyric-content').innerHTML = '<p>No lyrics file specified.</p>';
+        }
+      });
+    </script>
+  </body>
+</html>

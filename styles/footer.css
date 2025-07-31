@@ -1,0 +1,20 @@
+/* footer.css */
+.copyright {
+  background-color: #001d43;
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.copyright a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 768px) {
+  .copyright {
+    font-size: 14px;
+  }
+}

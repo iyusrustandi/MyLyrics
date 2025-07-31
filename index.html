@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyLyrics - Lirik Lagu</title>
+    <link href="/images/logo.png" rel="icon" />
+    <meta name="description" content="Temukan lirik lagu favorit Anda di MyLyrics. Mudah, cepat, dan gratis!" />
+    <meta name="keywords" content="lirik lagu, lagu terbaru, MyLyrics" />
+    <meta name="author" content="MyLyrics Team" />
+    <meta property="og:title" content="MyLyrics - Lirik Lagu" />
+    <meta property="og:description" content="Temukan lirik lagu favorit Anda di MyLyrics." />
+    <meta property="og:image" content="/images/logo.png" />
+    <meta property="og:url" content="https://mylyrics.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer src="/scripts/fetchcomponents.js"></script>
+    <script defer src="/scripts/fetchapi.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MyLyrics",
+        "url": "https://mylyrics.vercel.app",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mylyrics.vercel.app/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="nav-placeholder"></div>
+    <main>
+      <section class="songlist">
+        <h1>Temukan Lirik Lagu Favoritmu</h1>
+        <p>Jelajahi database lagu terbaru dan nyanyikan dengan mudah.</p>
+        <input type="text" id="search-input" placeholder="Cari artis atau lagu..." />
+        <div id="song-list"></div>
+        <div id="pagination" class="pagination-controls" style="margin-top: 1rem"></div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+  </body>
+</html>
