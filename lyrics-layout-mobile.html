@@ -4,15 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="page-title">Lyrics Viewer</title>
-    <link href="/images/logo.png" rel="icon" />
-    <!-- <link rel="stylesheet" href="/style/lyrics-style.css" /> -->
+    <title>Lyrics Viewer</title>
+    <link href="https://mylyrics-project.vercel.app//images/logo.png" rel="icon" />
     <script src="scripts/jquery-3.7.0.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/styles/lyrics-style.css" />
-    <link rel="stylesheet" href="/styles/navbar.css" />
-    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="https://mylyrics-project.vercel.app//styles/lyrics-style.css" />
+    <link rel="stylesheet" href="https://mylyrics-project.vercel.app//styles/navbar.css" />
+    <link rel="stylesheet" href="https://mylyrics-project.vercel.app//styles/footer.css" />
     <style>
       .loading-animation {
         text-align: center;
@@ -26,34 +25,27 @@
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <div id="nav-placeholder"></div>
-
     <!-- Main Content -->
     <main role="main">
       <!-- Lyrics Container -->
       <section class="lyric-container">
-        <h2 id="lyric-title" aria-level="1">Loading...</h2>
         <div id="lyric-content" aria-live="polite">
           <p>Loading lyrics...</p>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
-
-    <script src="https://jaktourband.vercel.app/js/script.js"></script>
+    <script src="https://mylyrics-project.vercel.app/scripts/script.js"></script>
     <script>
       function loadLyrics(lyricsPath) {
         const lyricContent = document.getElementById('lyric-content');
 
         // Menampilkan animasi loading
         lyricContent.innerHTML = `
-      <div class="loading-animation">
-        <p>Loading lyrics...</p>
-      </div>
-    `;
+          <div class="loading-animation">
+            <p>Loading lyrics...</p>
+          </div>
+        `;
 
         fetch(lyricsPath)
           .then((response) => {
@@ -75,8 +67,8 @@
         const song = urlParams.get('song');
         const lyricsFile = urlParams.get('lyrics')?.trim();
 
-        document.getElementById('page-title').textContent = artist && song ? `${artist} - ${song}` : 'Lyrics Viewer';
-        document.getElementById('lyric-title').textContent = artist && song ? `${artist} - ${song}` : 'Lyrics Viewer';
+        // Set judul halaman (tab browser)
+        document.title = artist && song ? `${artist} - ${song}` : 'Lyrics Viewer';
 
         if (lyricsFile) {
           loadLyrics(lyricsFile);
